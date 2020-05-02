@@ -9,9 +9,12 @@ https://youtu.be/l1as3tYVy64
 
 I'm by no means a Javascript expert, but this code is what worked for me:
 
-- **RGBW Lighting Function Node Code**
+- **RGBW Lighting Function Node Code (Updated 02-MAY-2020)**
 ```
-if (msg.colormode === "hs")
+if (msg.payload === "off") msg.payload = {
+    "service": "turn_off"
+};
+else if (msg.colormode === "hs")
     msg.payload = {
         "service": "turn_on",
         data: {
@@ -27,7 +30,4 @@ else
             "brightness": msg.bri
         }
     };
-if (msg.payload === "off") msg.payload = {
-    "service": "turn_off"
-};
 return msg;
